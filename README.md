@@ -1,5 +1,5 @@
 # api.runesoft.net
-Rest API mainly for content creators chatbots as used in Twtich, Discord or Telegram.
+Rest API mainly for content creators chatbots as used in Twitch, Discord or Telegram.
 
 ## Twitch API
 Using Twitch's API, Helix, this API can obtain public users data, from twitch user name or ID. The twitch user api endpoints are:
