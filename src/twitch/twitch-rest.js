@@ -63,8 +63,8 @@ export const twitch = {
          */
         getUser: () => {
             twitch._rest.get(`${twitch._basePath}/user`, async (req, res) => {
-                const { streamer } = req.query;
-                res.send(await user.getUser(streamer));
+                const { id } = req.id;
+                res.send(await user.getUser(id));
             });
         },
 
