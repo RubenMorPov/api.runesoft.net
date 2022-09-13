@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { connections } from '../../../utiles/connections.js';
 
 export const info = {
     /**
@@ -9,5 +9,5 @@ export const info = {
      * @returns JSON with all the player's data that could be retrieved.
      */
     all: async (region, user, tag) =>
-        (await axios.get(`https://api.henrikdev.xyz/valorant/v1/mmr/${region}/${user}/${tag}`)).data.data,
+        (await connections.get(`https://api.henrikdev.xyz/valorant/v1/mmr/${region}/${user}/${tag}`)).data.data,
 };

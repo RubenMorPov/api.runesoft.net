@@ -44,7 +44,6 @@ export const twitch = {
         getData: () => {
             twitch._rest.get(`${twitch._basePath}/user/data`, async (req, res) => {
                 const { streamer, id } = req.query;
-                console.log(`${id} | ${streamer}`);
                 const userData = streamer ? await user.getDataByName(streamer) : await user.getDataById(id);
                 res.send(userData);
             });
@@ -63,7 +62,7 @@ export const twitch = {
          */
         getUser: () => {
             twitch._rest.get(`${twitch._basePath}/user`, async (req, res) => {
-                const { id } = req.id;
+                const { id } = req.query;
                 res.send(await user.getUser(id));
             });
         },
