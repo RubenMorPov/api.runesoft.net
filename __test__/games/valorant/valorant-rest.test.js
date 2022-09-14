@@ -1,18 +1,20 @@
-const axios = require('axios');
+import { info } from '../../../src/games/valorant/mgr/valorant-mgr.js';
+
+const mock = {
+    name: 'MilkBrick',
+    tag: 'MILK',
+    region: 'EU',
+};
 
 describe('Valorant API Endpoints', () => {
     it('User Rank endpoint', async () => {
-        const response = await axios.get(`http://localhost:3000/games/valorant/rank?tag=MILK&region=eu&user=MilkBrick`);
-        expect(response.status).toEqual(200);
-        const valorantData = response.data;
+        const valorantData = await info.all(mock.region, mock.name, mock.tag);
         expect(valorantData.name).toEqual('MilkBrick');
         expect(valorantData.tag).toEqual('MILK');
     });
     it('User Tier endpoint', async () => {
-        const response = await axios.get(`http://localhost:3000/games/valorant/tier?tag=MILK&region=eu&user=MilkBrick`);
-        expect(response.status).toEqual(200);
-        const valorantData = response.data;
-        expect(valorantData).toBeGreaterThan(-1);
-        expect(valorantData).toBeLessThan(26);
+        const valorantData = await info.all(mock.region, mock.name, mock.tag);
+        expect(valorantData.currenttier).toBeGreaterThan(-1);
+        expect(valorantData.currenttier).toBeLessThan(26);
     });
 });
