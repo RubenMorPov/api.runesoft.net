@@ -1,4 +1,4 @@
-const axios = require('axios');
+import { user } from '../../src/twitch/mgr/twitch-users-mgr.js';
 
 const apiURL = 'http://localhost:3000';
 const userApiURL = '/twitch/user';
@@ -14,61 +14,43 @@ const mock = {
 
 describe('Twitch API Endpoints', () => {
     it('User data by name endpoint', async () => {
-        const response = await axios.get(`${apiURL}${userApiURL}/data?streamer=${mock.login}`);
-        expect(response.status).toEqual(200);
-        const userData = response.data;
+        const userData = await user.getDataByName(mock.login);
         expect(userData.id).toEqual(mock.id.toString());
         expect(userData.login).toEqual(mock.login);
         expect(userData.display_name).toEqual(mock.display_name);
     });
     it('User data by id endpoint', async () => {
-        const response = await axios.get(`${apiURL}${userApiURL}/data?id=${mock.id}`);
-        expect(response.status).toEqual(200);
-        const userData = response.data;
+        const userData = await user.getDataById(mock.id);
         expect(userData.id).toEqual(mock.id.toString());
         expect(userData.login).toEqual(mock.login);
         expect(userData.display_name).toEqual(mock.display_name);
     });
     it('User endpoint', async () => {
-        const response = await axios.get(`${apiURL}${userApiURL}?id=${mock.id}`);
-        expect(response.status).toEqual(200);
-        const userData = response.data;
+        const userData = await user.getUser(mock.id);
         expect(userData).toEqual(mock.login);
     });
     it('User ID endpoint', async () => {
-        const response = await axios.get(`${apiURL}${userApiURL}/id?streamer=${mock.login}`);
-        expect(response.status).toEqual(200);
-        const userData = response.data;
-        expect(userData).toEqual(mock.id);
+        const userData = await user.getId(mock.login);
+        expect(userData).toEqual(mock.id.toString());
     });
     it('User name endpoint', async () => {
-        const response = await axios.get(`${apiURL}${userApiURL}/name?streamer=${mock.login}`);
-        expect(response.status).toEqual(200);
-        const userData = response.data;
+        const userData = await user.getName(mock.login);
         expect(userData).toEqual(mock.display_name);
     });
     it('User type endpoint', async () => {
-        const response = await axios.get(`${apiURL}${userApiURL}/type?streamer=${mock.login}`);
-        expect(response.status).toEqual(200);
-        const userData = response.data;
+        const userData = await user.getBroadcasterType(mock.login);
         expect(userData).toEqual(mock.type);
     });
     it('User description endpoint', async () => {
-        const response = await axios.get(`${apiURL}${userApiURL}/description?streamer=${mock.login}`);
-        expect(response.status).toEqual(200);
-        const userData = response.data;
+        const userData = await user.getDescription(mock.login);
         expect(userData).toEqual(mock.description);
     });
     it('User is affiliate endpoint', async () => {
-        const response = await axios.get(`${apiURL}${userApiURL}/affiliate?streamer=${mock.login}`);
-        expect(response.status).toEqual(200);
-        const userData = response.data;
+        const userData = await user.isAffiliate(mock.login);
         expect(userData).toEqual(mock.affiliate);
     });
     it('User is partner', async () => {
-        const response = await axios.get(`${apiURL}${userApiURL}/partner?streamer=${mock.login}`);
-        expect(response.status).toEqual(200);
-        const userData = response.data;
+        const userData = await user.isPartner(mock.login);
         expect(userData).toEqual(mock.partner);
     });
 });
