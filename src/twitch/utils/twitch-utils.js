@@ -1,4 +1,6 @@
 import { connections } from '../../utiles/connections.js';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 export const API_DATA = {
     helixUrl: 'https://api.twitch.tv/helix',
