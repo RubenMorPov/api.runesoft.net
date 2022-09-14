@@ -3,16 +3,16 @@ import { connections } from '../../utiles/connections.js';
 export const API_DATA = {
     helixUrl: 'https://api.twitch.tv/helix',
     client: {
-        id: '<YOUR_ID>',
-        secret: '<YOUR_SECRET>',
-        code: '<YOUR_CODE>',
-        token: '<YOUR_OAUTH_ACCESS_TOKEN>',
+        id: process.env.API_TWITCH_ID,
+        secret: process.env.API_TWITCH_SECRET,
+        code: process.env.API_TWITCH_CODE,
+        token: `Bearer ${process.env.API_TWITCH_TOKEN}`,
         oauth: {
-            access_token: '',
-            expires_in: 0,
-            refresh_token: '',
-            scope: [],
-            token_type: '',
+            access_token: process.env.API_TWITCH_TOKEN,
+            expires_in: 13130,
+            refresh_token: process.env.API_TWITCH_REFRESH_TOKEN,
+            scope: ['channel:manage:polls', 'channel:read:polls', 'clips:edit'],
+            token_type: 'bearer',
         },
         setToken: (token) => {
             API_DATA.client.token = `Bearer ${token}`;
