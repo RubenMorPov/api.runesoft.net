@@ -30,8 +30,8 @@ export const twitch = {
      * The streamer must be online and streaming in order to create it.
      */
     createClip: async () => {
-        twitch._rest.get(`${twitch._basePath}/clip`, async (req, res) => {
-            const { streamer } = req.query;
+        twitch._rest.get(`${twitch._basePath}/clip/:streamer`, async (req, res) => {
+            const { streamer } = req.params;
             const userId = (await user.getData(streamer)).id;
             const clipInfo = await clips.create(userId);
             res.send(clipInfo ? clipInfo.url : '');
@@ -52,8 +52,8 @@ export const twitch = {
          * Retrieves a Twitch user/broadcaster id.
          */
         getId: () => {
-            twitch._rest.get(`${twitch._basePath}/user/id`, async (req, res) => {
-                const { streamer } = req.query;
+            twitch._rest.get(`${twitch._basePath}/user/id/:streamer`, async (req, res) => {
+                const { streamer } = req.params;
                 res.send(await user.getId(streamer));
             });
         },
@@ -61,8 +61,8 @@ export const twitch = {
          * Retrieves a Twitch user/broadcaster id.
          */
         getUser: () => {
-            twitch._rest.get(`${twitch._basePath}/user`, async (req, res) => {
-                const { id } = req.query;
+            twitch._rest.get(`${twitch._basePath}/user/:id`, async (req, res) => {
+                const { id } = req.params;
                 res.send(await user.getUser(id));
             });
         },
@@ -71,8 +71,8 @@ export const twitch = {
          * Retrieves a Twitch user/broadcaster id.
          */
         getName: () => {
-            twitch._rest.get(`${twitch._basePath}/user/name`, async (req, res) => {
-                const { streamer } = req.query;
+            twitch._rest.get(`${twitch._basePath}/user/name/:streamer`, async (req, res) => {
+                const { streamer } = req.params;
                 res.send(await user.getName(streamer));
             });
         },
@@ -81,8 +81,8 @@ export const twitch = {
          * Retrieves a Twitch user/broadcaster id.
          */
         getBroadcasterType: () => {
-            twitch._rest.get(`${twitch._basePath}/user/type`, async (req, res) => {
-                const { streamer } = req.query;
+            twitch._rest.get(`${twitch._basePath}/user/type/:streamer`, async (req, res) => {
+                const { streamer } = req.params;
                 res.send(await user.getBroadcasterType(streamer));
             });
         },
@@ -91,8 +91,8 @@ export const twitch = {
          * Retrieves a Twitch user/broadcaster id.
          */
         getDescription: () => {
-            twitch._rest.get(`${twitch._basePath}/user/description`, async (req, res) => {
-                const { streamer } = req.query;
+            twitch._rest.get(`${twitch._basePath}/user/description/:streamer`, async (req, res) => {
+                const { streamer } = req.params;
                 res.send(await user.getDescription(streamer));
             });
         },
@@ -101,8 +101,8 @@ export const twitch = {
          * Retrieves a Twitch user/broadcaster id.
          */
         isAffiliate: () => {
-            twitch._rest.get(`${twitch._basePath}/user/affiliate`, async (req, res) => {
-                const { streamer } = req.query;
+            twitch._rest.get(`${twitch._basePath}/user/affiliate/:streamer`, async (req, res) => {
+                const { streamer } = req.params;
                 res.send(await user.isAffiliate(streamer));
             });
         },
@@ -111,8 +111,8 @@ export const twitch = {
          * Retrieves a Twitch user/broadcaster id.
          */
         isPartner: () => {
-            twitch._rest.get(`${twitch._basePath}/user/partner`, async (req, res) => {
-                const { streamer } = req.query;
+            twitch._rest.get(`${twitch._basePath}/user/partner/:streamer`, async (req, res) => {
+                const { streamer } = req.params;
                 res.send(await user.isPartner(streamer));
             });
         },
