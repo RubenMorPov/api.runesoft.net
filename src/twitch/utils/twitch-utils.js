@@ -37,7 +37,6 @@ const token = {
         });
         API_DATA.client.setToken(response.data.access_token);
         API_DATA.client.oauth = response.data;
-        console.log(API_DATA.client.oauth);
         return API_DATA.client.oauth;
     },
     /**
@@ -54,7 +53,6 @@ const token = {
         });
         API_DATA.client.setToken(response.data.access_token);
         API_DATA.client.oauth = response.data;
-        console.log(API_DATA.client.oauth);
         return API_DATA.client.oauth;
     },
 };
