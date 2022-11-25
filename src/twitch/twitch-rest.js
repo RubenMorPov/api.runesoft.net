@@ -32,7 +32,7 @@ export const twitch = {
     createClip: async () => {
         twitch._rest.get(`${twitch._basePath}/clip/:streamer`, async (req, res) => {
             const { streamer } = req.params;
-            const userId = (await user.getData(streamer)).id;
+            const userId = (await user.getDataByName(streamer)).id;
             const clipInfo = await clips.create(userId);
             res.send(clipInfo ? clipInfo.url : '');
         });
