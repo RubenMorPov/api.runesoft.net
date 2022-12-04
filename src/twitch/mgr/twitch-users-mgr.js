@@ -7,8 +7,8 @@ export const user = {
      * @returns Twitch user data.
      */
     getDataByName: async (twitchUser) => {
-        const userData = (await helix.call('GET', `/users?login=${twitchUser}`)).data.data;
-        return !userData.length ? {} : userData[0];
+        const userData = (await helix.call('GET', `/users?login=${twitchUser}`))?.data?.data;
+        return !userData?.length ? {} : userData[0];
     },
     /**
      * Gets a twitch user data from Twitch Helix API using the user ID.
