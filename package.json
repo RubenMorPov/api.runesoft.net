@@ -4,6 +4,7 @@
         "axios": "^0.27.2",
         "dotenv": "^16.0.2",
         "express": "^4.18.1",
+        "keycloak-js": "^22.0.1",
         "node-fetch": "^3.2.10",
         "unofficial-valorant-api": "^2.3.0-stable.0"
     },
