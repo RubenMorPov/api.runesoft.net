@@ -1,0 +1,14 @@
+services:
+  api:
+    image: rubenmorchon/api.runesoft.net:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - API_TWITCH_ID=${API_TWITCH_ID}
+      - API_TWITCH_SECRET=${API_TWITCH_SECRET}
+      - API_TWITCH_CODE=${API_TWITCH_CODE}
+      - API_TWITCH_TOKEN=${API_TWITCH_TOKEN}
+      - API_TWITCH_REFRESH_TOKEN=${API_TWITCH_REFRESH_TOKEN}
+      # Add more variables as needed using ${VARIABLE_NAME} syntax
+    restart: "always"
+    
