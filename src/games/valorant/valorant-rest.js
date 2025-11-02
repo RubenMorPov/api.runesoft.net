@@ -7,6 +7,7 @@ export const valorant = {
         valorant._rest = rest;
         valorant._basePath = `${basePath}/games/valorant`;
         console.log('Loading Valorant API...');
+        valorant.getData();
         valorant.getRank();
         valorant.getTier();
         valorant.getRR();
@@ -15,11 +16,21 @@ export const valorant = {
     /**
      * Gets the full data of a valorant player.
      */
-    getRank: async () => {
-        valorant._rest.get(`${valorant._basePath}/rank/:region/:name/:tag`, async (req, res) => {
+    getData: async () => {
+        valorant._rest.get(`${valorant._basePath}/data/:region/:name/:tag`, async (req, res) => {
             const { region, name, tag } = req.params;
             const userData = await info.all(region, name, tag);
             res.send(userData);
+        });
+    },
+    /**
+     * Gets the full data of a valorant player.
+     */
+    getRank: async () => {
+        valorant._rest.get(`${valorant._basePath}/rank/:region/:name/:tag/:lang?`, async (req, res) => {
+            const { region, name, tag, lang } = req.params;
+            const userData = await info.all(region, name, tag);
+            if (userData) res.send(info.rank(userData.currenttier, userData.ranking_in_tier, userData.mmr_change_to_last_game, lang));
         });
     },
     /**
